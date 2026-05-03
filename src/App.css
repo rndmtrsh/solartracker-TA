@@ -7,6 +7,20 @@
   color: var(--on-background);
 }
 
+/* subtle base SVG background beneath the existing gradients */
+.dashboard-app::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: url('/src/assets/background.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: 0.9;
+  z-index: -2;
+}
+
 .topbar {
   position: fixed;
   inset: 0 0 auto;
@@ -85,11 +99,17 @@
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background:
-    radial-gradient(circle at top left, rgba(159, 202, 255, 0.1), transparent 30%),
-    radial-gradient(circle at 85% 8%, rgba(255, 184, 102, 0.12), transparent 24%),
-    linear-gradient(180deg, rgba(16, 20, 24, 0.96), rgba(16, 20, 24, 0.9));
+  /* remove gradient overlays so background.svg is the only backdrop */
+  background: none;
   z-index: -1;
+}
+
+.dashboard-layout {
+  background: transparent;
+}
+
+.dashboard-grid {
+  background: transparent;
 }
 
 .hero-card {
@@ -265,9 +285,11 @@
 .metric-grid,
 .preview-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
   row-gap: 20px;
+  align-items: start;
+  background: transparent; /* ensure grid area is transparent so background.svg shows between cards */
 }
 
 .metric-card,
@@ -276,15 +298,29 @@
 .summary-card {
   border: 1px solid rgba(64, 71, 81, 0.88);
   border-radius: 18px;
-  background: rgba(12, 14, 18, 0.68);
+  background: rgba(12, 14, 18, 0.42);
   margin: 0;
 }
 
 .metric-card {
   position: relative;
   overflow: hidden;
-  min-height: 170px;
-  padding: 18px;
+  min-height: 120px;
+  padding: 14px;
+}
+
+/* Larger, more proportional primary metric cards */
+.metric-card.metric-card--primary {
+  min-height: 150px;
+  padding: 16px;
+}
+
+.metric-card.metric-card--primary .metric-card__value {
+  font-size: 48px;
+}
+
+.metric-card.metric-card--primary .metric-card__unit {
+  font-size: 18px;
 }
 
 .metric-card::before {
@@ -308,9 +344,9 @@
 .metric-card__label,
 .preview-card__label,
 .control-metric__label {
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.18em;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--on-surface-variant);
 }
@@ -319,7 +355,7 @@
 .preview-card__icon,
 .control-metric__icon,
 .summary-card__icon {
-  font-size: 22px;
+  font-size: 20px;
 }
 
 .metric-card__icon,
@@ -337,26 +373,28 @@
 .control-metric__value-row {
   display: flex;
   align-items: baseline;
-  gap: 8px;
-  margin-top: 26px;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 18px;
 }
 
 .metric-card__value,
 .preview-card strong,
 .control-metric strong {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 42px;
+  font-size: 40px;
   line-height: 1;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.02em;
   color: var(--on-surface);
 }
 
 .metric-card__unit,
 .preview-card span,
 .control-metric span {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
-  color: var(--primary);
+  color: var(--on-surface-variant);
+  margin-left: 8px;
 }
 
 .metric-card__footer {
@@ -650,6 +688,16 @@
     padding: 24px;
   }
 
+  .metric-card__value,
+  .preview-card strong {
+    font-size: 34px;
+  }
+
+  .metric-card__unit,
+  .preview-card span {
+    font-size: 14px;
+  }
+
   .metric-grid,
   .preview-grid {
     grid-template-columns: 1fr;
@@ -691,10 +739,10 @@
   .panel-section,
   .panel-card {
     padding: 24px;
-    border: 1px solid rgba(64, 71, 81, 0.95);
+    border: 1px solid rgba(64, 71, 81, 0.85);
     border-radius: 20px;
-    background: linear-gradient(180deg, rgba(29, 32, 37, 0.95), rgba(22, 25, 30, 0.96));
-    box-shadow: 0 24px 68px rgba(0, 0, 0, 0.26);
+    background: linear-gradient(180deg, rgba(29, 32, 37, 0.72), rgba(22, 25, 30, 0.72));
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
     margin: 0;
   }
   }

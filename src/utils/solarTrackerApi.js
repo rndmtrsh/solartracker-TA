@@ -37,3 +37,23 @@ export async function sendButtonCommand(value) {
 
   return response.json()
 }
+
+const NONSISTEM_URL = 'https://sistem-solar-tracker-default-rtdb.firebaseio.com/nonsistem.json'
+
+export async function fetchNonSistemData() {
+  const response = await fetch(NONSISTEM_URL, {
+    headers: { 'Content-Type': 'application/json' },
+  })
+
+  if (!response.ok) {
+    throw new Error(`Gagal mengambil data pembanding (${response.status})`)
+  }
+
+  const payload = await response.json()
+
+  return {
+    ARUS: Number(payload?.ARUS ?? 0),
+    DAYA: Number(payload?.DAYA ?? 0),
+    TEGANGAN: Number(payload?.TEGANGAN ?? 0),
+  }
+}

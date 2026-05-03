@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import logoUms from './assets/4.UMS.png'
 import backgroundGedung from './assets/gedung.webp'
 import './App.css'
-import { fetchSolarTrackerData, sendButtonCommand } from './utils/solarTrackerApi'
+import { fetchSolarTrackerData, fetchNonSistemData, sendButtonCommand } from './utils/solarTrackerApi'
 
 const INITIAL_DATA = {
   ARUS: 0,
@@ -75,6 +75,7 @@ function App() {
   const [buttonStatus, setButtonStatus] = useState('IDLE')
   const [sending, setSending] = useState(false)
   const displayStatus = data.BUTTON ?? buttonStatus
+  const [nonsistem, setNonsistem] = useState({ ARUS: 0, DAYA: 0, TEGANGAN: 0 })
 
   useEffect(() => {
     let active = true
@@ -91,6 +92,14 @@ function App() {
         setError('')
         setLoading(false)
         setLastUpdated(new Date().toLocaleTimeString('id-ID'))
+        // also load pembanding (nonsistem) data
+        try {
+          const ns = await fetchNonSistemData()
+          if (active) setNonsistem(ns)
+        } catch (e) {
+          // non-fatal: keep previous nonsistem state
+          console.warn('Gagal memuat pembanding', e)
+        }
       } catch (requestError) {
         if (!active) {
           return
@@ -212,13 +221,7 @@ function App() {
                       </strong>
                       <span className="metric-card__unit">{metric.unit}</span>
                     </div>
-                    <div className="metric-card__footer">
-                      {!['TEGANGAN', 'ARUS', 'DAYA'].includes(metric.key) && (
-                        <span className="metric-card__progress">
-                          <span className="metric-card__progress-fill" style={{ width: metric.live ? '36%' : '22%' }} />
-                        </span>
-                      )}
-                    </div>
+                    {/* footer intentionally removed for live data */}
                   </article>
                 ))}
               </div>
@@ -240,7 +243,7 @@ function App() {
                       <span className="material-symbols-outlined preview-card__icon">{metric.icon}</span>
                     </div>
                     <div className="preview-card__value-row">
-                      <strong>{formatValue(data[metric.key], metric.key === 'DAYA' ? 0 : 1)}</strong>
+                      <strong>{formatValue(nonsistem[metric.key] ?? data[metric.key], metric.key === 'DAYA' ? 0 : 1)}</strong>
                       <span>{metric.unit}</span>
                     </div>
                   </article>
@@ -254,7 +257,7 @@ function App() {
               <div className="section-header section-header--stacked">
                 <div>
                   <p className="section-header__eyebrow">Panel Kontrol</p>
-                  <h2>Panel Kontrol &amp; Ringkasan</h2>
+                  <h2>Panel Kontrol PV</h2>
                 </div>
               </div>
 

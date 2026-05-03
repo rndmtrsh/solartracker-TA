@@ -1,0 +1,73 @@
+:root {
+  --surface: #101418;
+  --background: #101418;
+  --surface-dim: #101418;
+  --surface-bright: #36393f;
+  --surface-container-lowest: #0b0e13;
+  --surface-container-low: #181c21;
+  --surface-container: #1d2025;
+  --surface-container-high: #272a2f;
+  --surface-container-highest: #32353a;
+  --surface-variant: #32353a;
+  --on-surface: #e0e2e9;
+  --on-surface-variant: #c0c7d3;
+  --on-background: #e0e2e9;
+  --primary: #9fcaff;
+  --primary-container: #4894e2;
+  --primary-fixed: #d2e4ff;
+  --primary-fixed-dim: #9fcaff;
+  --on-primary: #003259;
+  --on-primary-container: #002b4e;
+  --secondary: #ffb866;
+  --secondary-container: #955b01;
+  --on-secondary: #482900;
+  --tertiary: #ffb86e;
+  --outline: #8b919c;
+  --outline-variant: #414751;
+  --error: #ffb4ab;
+
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  font-synthesis: none;
+  color: var(--on-background);
+  background: var(--background);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top, rgba(159, 202, 255, 0.08), transparent 30%),
+    linear-gradient(180deg, #0a0e13 0%, #101418 100%);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+#root {
+  min-height: 100vh;
+}

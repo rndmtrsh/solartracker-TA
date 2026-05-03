@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>UMS Solar Tracker Monitoring System</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#ffb86e",
+                        "on-tertiary-fixed-variant": "#693c00",
+                        "surface-bright": "#36393f",
+                        "surface-container-lowest": "#0b0e13",
+                        "inverse-surface": "#e0e2e9",
+                        "on-primary-container": "#002b4e",
+                        "secondary-container": "#955b01",
+                        "secondary": "#ffb866",
+                        "on-tertiary-fixed": "#2c1600",
+                        "on-tertiary-container": "#402300",
+                        "on-primary-fixed-variant": "#00497e",
+                        "error": "#ffb4ab",
+                        "primary-container": "#4894e2",
+                        "on-primary": "#003259",
+                        "surface": "#101418",
+                        "background": "#101418",
+                        "primary": "#9fcaff",
+                        "on-secondary-container": "#ffe3c9",
+                        "tertiary-container": "#cd7f1b",
+                        "surface-tint": "#9fcaff",
+                        "surface-variant": "#32353a",
+                        "tertiary-fixed": "#ffdcbd",
+                        "surface-dim": "#101418",
+                        "on-surface-variant": "#c0c7d3",
+                        "on-secondary": "#482900",
+                        "on-tertiary": "#492900",
+                        "tertiary-fixed-dim": "#ffb86e",
+                        "surface-container-high": "#272a2f",
+                        "on-secondary-fixed-variant": "#673d00",
+                        "inverse-primary": "#0061a5",
+                        "error-container": "#93000a",
+                        "surface-container-low": "#181c21",
+                        "surface-container-highest": "#32353a",
+                        "outline-variant": "#414751",
+                        "inverse-on-surface": "#2d3136",
+                        "on-error-container": "#ffdad6",
+                        "secondary-fixed": "#ffddba",
+                        "on-surface": "#e0e2e9",
+                        "on-primary-fixed": "#001d37",
+                        "secondary-fixed-dim": "#ffb866",
+                        "on-secondary-fixed": "#2b1700",
+                        "primary-fixed": "#d2e4ff",
+                        "surface-container": "#1d2025",
+                        "on-error": "#690005",
+                        "outline": "#8b919c",
+                        "on-background": "#e0e2e9",
+                        "primary-fixed-dim": "#9fcaff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "margin": "32px",
+                        "card-padding": "20px",
+                        "gutter": "24px",
+                        "stack-sm": "8px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "metric-display": ["Space Grotesk"],
+                        "headline-md": ["Space Grotesk"],
+                        "label-sm": ["Inter"],
+                        "headline-xl": ["Space Grotesk"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "metric-display": ["32px", {"lineHeight": "40px", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-xl": ["40px", {"lineHeight": "48px", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #0a0a0a;
+            color: #e0e2e9;
+        }
+        .card-surface {
+            background-color: #1e1e1e;
+            border: 1px solid #2d2d2d;
+        }
+        .active-sidebar-item {
+            background-color: #1e1e1e;
+            color: #9fcaff;
+            border-left: 4px solid #9fcaff;
+        }
+    </style>
+</head>
+<body class="font-body-md overflow-x-hidden">
+<!-- Header -->
+<header class="fixed top-0 left-0 right-0 z-50 flex items-center h-16 px-6 bg-[#0a0a0a] border-b border-[#2d2d2d] font-['Space_Grotesk']">
+<div class="flex items-center gap-4"><img alt="UMS Logo" class="h-8 w-8 object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0ugoKDkp0iqi6ANOjMHoQhdsxcPlwY0MaQhQx5F5bEX2kTBRayw2JGPEPH4IGrDyfPiYpAMemy5zSvXBW6-ORdQ8serE-HQeUicNb3C7ZGy3TCIJv85NFjSZiYEz6kWuFcv_-5_cZpi1qwmTn5h6wvWTkL8esR5FBeIRYhqaS_Iktbpzjq3MvBAAwxnHv79Zftwt7gOygXMdJtqc8mwOZnf4mavDM-4Af8_6HcuILiIvSDlb7i4aT4AHx9jwiGdXCrY8AgxSjmHDhA"/>
+<span class="text-lg font-bold text-white tracking-widest">UMS Solar Tracker</span>
+<span class="absolute left-1/2 -translate-x-1/2 hidden md:block text-xl font-bold text-white whitespace-nowrap">Sistem Monitoring Solar Tracker</span>
+</div>
+</header>
+<!-- Sidebar -->
+<!-- Main Content -->
+<main class="pt-16 min-h-screen">
+<div class="max-w-[1440px] mx-auto p-margin">
+<!-- Hero Card -->
+<div class="relative w-full rounded-xl overflow-hidden border border-[#2d2d2d] mb-gutter bg-[#1e1e1e]">
+<div class="absolute inset-0 opacity-20 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+<img alt="Solar Panel Background" class="w-full h-48 object-cover opacity-50 filter grayscale contrast-125" src="https://lh3.googleusercontent.com/aida/ADBb0uh_n6lra6gM2pfl5nIk4P320OypRf3h1MpfweTeCEK_19c8HZbzonkRYmMbJaBmHMfIfLb_lbZwknjXsnr7GVNpeR8uGR6RessLA7wvlZQQIEf2xucdjTOKJ76SV6Ghl4N3mxl_MNGFYvHIWZU6NhdQeXNjw98x-8-27_-VORBaKduL0SFP7UGEGZ3zjWAnr9tlKxCLxNuzhMt91YZG8FVlGyNcKOR2EAh7cePqdYPyhvvjO96RhGO7prQGzLKSPxJfKudbv3vQIw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#1e1e1e] via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8">
+<h1 class="text-2xl md:text-3xl font-bold text-white mb-1">Welcome To Dashboard Sistem Solar Tracker</h1>
+<p class="text-primary font-medium text-sm md:text-base">Monitoring Real-time Solar Tracker</p>
+</div>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Left: Metrics Columns (Span 2) -->
+<div class="lg:col-span-2 space-y-gutter">
+<!-- Data Sistem Solar Tracker -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h2 class="flex items-center gap-2 font-bold text-white">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="solar_power">solar_power</span>
+                                Data Sistem Solar Tracker
+                            </h2>
+<span class="text-[10px] bg-primary/10 text-primary border border-primary/20 px-3 py-1 rounded font-bold uppercase tracking-widest">LIVE DATA</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="card-surface p-4 rounded-xl flex flex-col justify-between h-32 relative group overflow-hidden">
+<div class="flex justify-between items-start">
+<span class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">TEGANGAN</span>
+<span class="material-symbols-outlined text-primary" data-icon="bolt">bolt</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl font-bold text-white">402.5</span>
+<span class="text-primary font-bold text-lg">V</span>
+</div>
+<div class="absolute bottom-0 left-0 h-1 bg-[#2d2d2d] w-full">
+<div class="h-full bg-primary" style="width: 75%"></div>
+</div>
+</div>
+<div class="card-surface p-4 rounded-xl flex flex-col justify-between h-32 relative group overflow-hidden">
+<div class="flex justify-between items-start">
+<span class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">ARUS</span>
+<span class="material-symbols-outlined text-primary" data-icon="electric_bolt">electric_bolt</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl font-bold text-white">12.8</span>
+<span class="text-primary font-bold text-lg">A</span>
+</div>
+<div class="absolute bottom-0 left-0 h-1 bg-[#2d2d2d] w-full">
+<div class="h-full bg-primary" style="width: 45%"></div>
+</div>
+</div>
+<div class="card-surface p-4 rounded-xl flex flex-col justify-between h-32 relative group overflow-hidden">
+<div class="flex justify-between items-start">
+<span class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">DAYA</span>
+<span class="material-symbols-outlined text-primary" data-icon="speed">speed</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl font-bold text-white">5,152</span>
+<span class="text-primary font-bold text-lg">W</span>
+</div>
+<div class="absolute bottom-0 left-0 h-1 bg-[#2d2d2d] w-full">
+<div class="h-full bg-primary" style="width: 60%"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Data Non Sistem Solar Tracker -->
+<section>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-gray-500 text-xl" data-icon="grid_on">grid_on</span>
+<h2 class="font-bold text-white">Data Non Sistem Solar Tracker</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="card-surface p-4 rounded-xl flex flex-col justify-between h-28 opacity-80">
+<div class="flex justify-between items-start">
+<span class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">TEGANGAN</span>
+<span class="material-symbols-outlined text-gray-600" data-icon="bolt">bolt</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="text-2xl font-bold text-gray-400">402.5</span>
+<span class="text-gray-600 font-bold">V</span>
+</div>
+</div>
+<div class="card-surface p-4 rounded-xl flex flex-col justify-between h-28 opacity-80">
+<div class="flex justify-between items-start">
+<span class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">ARUS</span>
+<span class="material-symbols-outlined text-gray-600" data-icon="electric_bolt">electric_bolt</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="text-2xl font-bold text-gray-400">12.8</span>
+<span class="text-gray-600 font-bold">A</span>
+</div>
+</div>
+<div class="card-surface p-4 rounded-xl flex flex-col justify-between h-28 opacity-80">
+<div class="flex justify-between items-start">
+<span class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">DAYA</span>
+<span class="material-symbols-outlined text-gray-600" data-icon="speed">speed</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="text-2xl font-bold text-gray-400">5,152</span>
+<span class="text-gray-600 font-bold">W</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Sidebar: Controls & Info -->
+<div class="space-y-gutter">
+<!-- Panel Kontrol & Ringkasan -->
+<section class="card-surface p-6 rounded-xl border-l-4 border-primary">
+<h2 class="text-lg font-bold text-white mb-6">Panel Kontrol &amp; Ringkasan</h2>
+<!-- Suhu Panel Metric -->
+<div class="bg-[#121212] p-4 rounded-lg border border-[#2d2d2d] mb-4">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-secondary" data-icon="thermometer">thermometer</span>
+<span class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">SUHU PANEL</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl font-bold text-white">34.8</span>
+<span class="text-secondary font-bold text-lg">°C</span>
+</div>
+</div>
+<!-- Controls -->
+<div class="space-y-4">
+<!-- Pembersih Panel -->
+<div class="flex items-center justify-between p-4 bg-[#121212] rounded border border-[#2d2d2d]">
+<div>
+<p class="text-white font-medium text-sm">Pembersih Panel</p>
+<p class="text-[10px] text-gray-500 uppercase tracking-tighter">STATUS: <span class="text-emerald-500 font-bold">ON</span></p>
+</div>
+<button class="bg-primary text-on-primary-container px-4 py-2 rounded font-bold text-xs hover:bg-primary-container transition-colors">
+                                    Aktifkan
+                                </button>
+</div>
+<!-- Auto-Tracking Toggle -->
+</div>
+</section>
+<!-- Informasi Tambahan -->
+<section class="card-surface p-6 rounded-xl">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="info">info</span>
+<h2 class="text-lg font-bold text-white">Informasi Tambahan</h2>
+</div>
+<div class="space-y-4 text-sm text-gray-400 leading-relaxed font-body-md"><p>Solar tracker adalah sistem yang digunakan untuk mengarahkan panel surya agar selalu mengikuti posisi matahari sepanjang hari. Tujuannya supaya sinar matahari jatuh lebih tegak lurus ke permukaan panel, sehingga energi listrik yang dihasilkan lebih maksimal dibanding panel yang posisinya tetap.</p><p>Secara umum, solar tracker memakai sensor cahaya atau perhitungan waktu/matahari, lalu motor akan menggerakkan panel ke arah yang paling optimal. Sistem ini sering digunakan pada pembangkit listrik tenaga surya untuk meningkatkan efisiensi.</p></div>
+<div class="mt-8 pt-4 border-t border-[#2d2d2d] flex justify-between items-center text-[10px] font-bold text-gray-500 uppercase tracking-widest">
+<span>LAST UPDATE</span>
+<span class="text-primary">12:45:08 PM</span>
+</div>
+</section>
+</div>
+</div>
+<!-- Footer -->
+<footer class="mt-12 py-8 border-t border-[#2d2d2d] flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-xs">
+<p>© 2024 Universitas Muhammadiyah Surakarta - Teknik Elektro</p>
+<div class="flex gap-6">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">System Health</a>
+<a class="hover:text-primary transition-colors" href="#">Contact Support</a>
+</div>
+</footer>
+</div>
+</main>
+<!-- Mobile Nav -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-[#0a0a0a] border-t border-[#2d2d2d] flex items-center justify-around z-50">
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" data-icon="grid_view" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+<span class="text-[10px] font-bold">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-500">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+<span class="text-[10px] font-bold">Metrics</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-500">
+<span class="material-symbols-outlined" data-icon="settings_remote">settings_remote</span>
+<span class="text-[10px] font-bold">Control</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-500">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="text-[10px] font-bold">Logs</span>
+</button>
+</nav>
+</body></html>

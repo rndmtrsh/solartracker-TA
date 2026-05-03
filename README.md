@@ -20,19 +20,19 @@ Struktur penting
 Endpoint API (Firebase)
 - GET Data utama:
 	```
-	GET https://sistem-solar-tracker-default-rtdb.firebaseio.com/Data.json
+	GET <endpoint API>/Data.json
 	```
 	Response contoh: `{"ARUS":5,"DAYA":60,"TEGANGAN":20,"SUHU":...,"BUTTON":"ON"}`
 
 - GET pembanding (nonsistem):
 	```
-	GET https://sistem-solar-tracker-default-rtdb.firebaseio.com/nonsistem.json
+	GET <endpoint API>/nonsistem.json
 	```
 	Response contoh: `{"ARUS":5,"DAYA":60,"TEGANGAN":20}`
 
 - PATCH untuk tombol (mengubah field `BUTTON`):
 	```
-	PATCH https://sistem-solar-tracker-default-rtdb.firebaseio.com/Data.json
+	PATCH <endpoint API>/Data.json
 	Content-Type: application/json
 	Body: { "BUTTON": "ON" }
 	```
@@ -69,13 +69,13 @@ Deploy ke Vercel
 Contoh curl
 ```bash
 # Ambil data utama
-curl -X GET https://sistem-solar-tracker-default-rtdb.firebaseio.com/Data.json
+curl -X GET <endpoint API>/Data.json
 
 # Ambil data pembanding
-curl -X GET https://sistem-solar-tracker-default-rtdb.firebaseio.com/nonsistem.json
+curl -X GET <endpoint API>/nonsistem.json
 
 # Kirim perintah tombol
-curl -X PATCH -d '{"BUTTON":"ON"}' -H "Content-Type: application/json" https://sistem-solar-tracker-default-rtdb.firebaseio.com/Data.json
+curl -X PATCH -d '{"BUTTON":"ON"}' -H "Content-Type: application/json" <endpoint API>/Data.json
 ```
 
 Butuh bantuan deploy Vercel atau menambah environment variables (secrets)? Sampaikan, saya bantu langkah selanjutnya.

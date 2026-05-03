@@ -331,24 +331,16 @@ function App() {
         </footer>
       </main>
 
-      <nav className="mobile-nav" aria-label="Navigasi mobile">
-        <button type="button" className="mobile-nav__item mobile-nav__item--active">
-          <span className="material-symbols-outlined">grid_view</span>
-          <span>Home</span>
-        </button>
-        <button type="button" className="mobile-nav__item">
-          <span className="material-symbols-outlined">insights</span>
-          <span>Metrics</span>
-        </button>
-        <button type="button" className="mobile-nav__item">
-          <span className="material-symbols-outlined">settings_remote</span>
-          <span>Control</span>
-        </button>
-        <button type="button" className="mobile-nav__item">
-          <span className="material-symbols-outlined">history</span>
-          <span>Logs</span>
-        </button>
-      </nav>
+      {/* Mobile nav intentionally removed; provide floating action for mobile interactivity */}
+
+      <button
+        className="mobile-fab"
+        aria-label="Aktifkan Pembersih"
+        onClick={handleButtonPress}
+        disabled={sending}
+      >
+        {sending ? 'Mengirim...' : 'Aktifkan'}
+      </button>
     </div>
   )
 }

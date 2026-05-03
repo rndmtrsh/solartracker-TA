@@ -584,6 +584,40 @@
   display: none;
 }
 
+/* Floating action button for mobile interactivity */
+.mobile-fab {
+  display: none;
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 60;
+  border: 0;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, var(--primary), var(--primary-container));
+  color: var(--on-primary);
+  font-weight: 800;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.4);
+  cursor: pointer;
+}
+
+@media (max-width: 720px) {
+  .mobile-fab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 64px;
+    min-height: 64px;
+    border-radius: 999px;
+    padding: 0 18px;
+    font-size: 15px;
+  }
+
+  .topbar__meta { display: none; }
+  .hero-card__content { padding: 18px; }
+  .metric-card__value { font-size: 34px; }
+}
+
 @media (max-width: 1180px) {
   .dashboard-grid {
     grid-template-columns: 1fr;

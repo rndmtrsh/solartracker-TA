@@ -213,13 +213,11 @@ function App() {
                       <span className="metric-card__unit">{metric.unit}</span>
                     </div>
                     <div className="metric-card__footer">
-                      <span>{metric.live ? 'Realtime' : 'Statik'}</span>
+                      {!['TEGANGAN', 'ARUS', 'DAYA'].includes(metric.key) && (
                         <span className="metric-card__progress">
-                        <span
-                          className="metric-card__progress-fill"
-                          style={{ width: metric.live ? '36%' : '22%' }}
-                        />
-                      </span>
+                          <span className="metric-card__progress-fill" style={{ width: metric.live ? '36%' : '22%' }} />
+                        </span>
+                      )}
                     </div>
                   </article>
                 ))}

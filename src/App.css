@@ -266,7 +266,8 @@
 .preview-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  gap: 20px;
+  row-gap: 20px;
 }
 
 .metric-card,
@@ -276,6 +277,7 @@
   border: 1px solid rgba(64, 71, 81, 0.88);
   border-radius: 18px;
   background: rgba(12, 14, 18, 0.68);
+  margin: 0;
 }
 
 .metric-card {
@@ -654,12 +656,13 @@
 
   .panel-section,
   .panel-card {
-    padding: 18px;
-    border-radius: 18px;
+    padding: 24px;
+    border: 1px solid rgba(64, 71, 81, 0.95);
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(29, 32, 37, 0.95), rgba(22, 25, 30, 0.96));
+    box-shadow: 0 24px 68px rgba(0, 0, 0, 0.26);
+    margin: 0;
   }
-
-  .section-header {
-    flex-direction: column;
   }
 
   .control-item {
@@ -709,4 +712,4 @@
     margin-top: 18px;
     grid-column: 1 / -1;
   }
-}
+
